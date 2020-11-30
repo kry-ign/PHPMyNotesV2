@@ -6,48 +6,12 @@ namespace App;
 
 require_once ('src/Utils/debug.php');
 
-if(!empty($_GET['action'])) {
-    $action = $_GET['action'];
+$action = $_GET['action'] ?? null;
+
+// logika widoku
+if($action === 'create') {
+    include_once('templates/pages/create.php');
 } else {
-    $action = null;
+    include_once('templates/pages/list.php');
 }
 
-
-?>
-
-<html>
-    <head>
-
-    </head>
-    <body>
-        <div class="head">
-            <h1>Moje notatki</h1>
-        </div>
-        <div class="container">
-            <div class="menu">
-                <ul>
-                    <li>
-                        <a href="/">Lista notatek</a>
-                    </li>
-                    <li>
-                        <a href="/?action=create">Nowa notatka</a>
-                    </li>
-                </ul>
-
-            </div>
-            <div>
-                <?php
-                    if($action === 'create'):
-                        echo "nowa notatka";
-                    else:
-                        echo "lista notatek";
-                    endif;
-                ?>
-            </div>
-
-        </div>
-        <div class="footer">
-
-        </div>
-    </body>
-</html>
