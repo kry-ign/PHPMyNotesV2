@@ -6,7 +6,12 @@ namespace App;
 
 require_once ('src/Utils/debug.php');
 
-$test = 'test';
+if(!empty($_GET['action'])) {
+    $action = $_GET['action'];
+} else {
+    $action = null;
+}
+
 
 ?>
 
@@ -31,7 +36,13 @@ $test = 'test';
 
             </div>
             <div>
-                treść
+                <?php
+                    if($action === 'create'):
+                        echo "nowa notatka";
+                    else:
+                        echo "lista notatek";
+                    endif;
+                ?>
             </div>
 
         </div>
