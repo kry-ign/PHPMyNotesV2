@@ -4,14 +4,24 @@ declare(strict_types=1);
 
 namespace App;
 
-require_once ('src/Utils/debug.php');
+require_once ("src/Utils/debug.php");
+require_once ("src/View.php");
 
-$action = $_GET['action'] ?? null;
+const DEFAULT_ACTION = 'list';
 
-// logika widoku
-if($action === 'create') {
-    include_once('templates/pages/create.php');
+$action = $_GET['action'] ?? DEFAULT_ACTION;
+
+$view = new View();
+
+$viewParams = [];
+if ($action === 'create') {
+    $page = 'create';
+    $viewParams['resultCreate'] = "udało się";
 } else {
-    include_once('templates/pages/list.php');
+    $page = 'list';
+    $viewParams['resultList'] = "wyświetlamy notatki";
 }
+$view->render($page, $viewParams);
+
+
 
