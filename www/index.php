@@ -7,10 +7,12 @@ namespace App;
 require_once ("src/Utils/debug.php");
 require_once ("src/Controller.php");
 
-$controller = new Controller($_GET, $_POST);
-$controller->run();
+$request = [
+    'get' => $_GET,
+    'post' => $_POST
+];
 
-
+(new Controller($request))->run();
 
 
 
